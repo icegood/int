@@ -9,10 +9,11 @@ set(PROJECT_SOURCES
 )
 
 include(proj_dependencies)
+set(${PROJECT_NAME}_SOURCE_DIRS_OUT ${${PROJECT_NAME}_SOURCE_DIRS_OWN} PARENT_SCOPE)
 
 add_library(proj_lib STATIC ${PROJECT_SOURCES})
 target_include_directories (proj_lib PUBLIC ${INCLUDE_DIR})
 # unit tests
 add_tests_target(proj_lib)
-#  gprof
+# gprof
 add_gprof_target(proj_lib)
