@@ -5,15 +5,16 @@ set (INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set (SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 set(PROJECT_SOURCES
-    ${SOURCE_DIR}/proj_lib.cpp
+    ${SOURCE_DIR}/${PROJECT_NAME}.cpp
 )
 
 include(project_specific)
+set(${PROJECT_NAME}_SOURCE_DIRS_OWN ${SOURCE_DIR})
 set(${PROJECT_NAME}_SOURCE_DIRS_OUT ${${PROJECT_NAME}_SOURCE_DIRS_OWN} PARENT_SCOPE)
 
-add_library(proj_lib STATIC ${PROJECT_SOURCES})
-target_include_directories (proj_lib PUBLIC ${INCLUDE_DIR})
+add_library(${PROJECT_NAME} STATIC ${PROJECT_SOURCES})
+target_include_directories (${PROJECT_NAME} PUBLIC ${INCLUDE_DIR})
 # unit tests
-add_tests_target(proj_lib)
+add_tests_target(${PROJECT_NAME})
 # gprof
-add_gprof_target(proj_lib)
+add_gprof_target(${PROJECT_NAME})

@@ -8,23 +8,14 @@ function(add_dependent_subproject subproject_name)
     set(${PROJECT_NAME}_SOURCE_DIRS_OWN ${${PROJECT_NAME}_SOURCE_DIRS_OWN} ${${subproject_name}_SOURCE_DIRS_OUT} PARENT_SCOPE)
 endfunction(add_dependent_subproject)
 
-# Make sure we tell the topdir CMakeLists that we exist (if build from topdir)
-get_directory_property(hasParent PARENT_DIRECTORY)
-
-if(hasParent)
-  set(PROJECT_${PROJECT_NAME} true PARENT_SCOPE)
-endif()
-
-set(${PROJECT_NAME}_SOURCE_DIRS_OWN ${SOURCE_DIR})
-
-# project specific paameters :
+# project specific parameters :
 function(configure_additional_options)
   include(${CMAKE_CURRENT_SOURCE_DIR}/cmake_utils/${PROJECT_NAME}_options.cmake)
   configure_file( ./include/${PROJECT_NAME}_options.h.in ${PROJECT_NAME}_options.h @ONLY)
   target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 endfunction(configure_additional_options)
 
-# project :
+# project executable confguration
 function(configure_project_executable)
   set (SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
   set (INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -32,7 +23,7 @@ function(configure_project_executable)
   set(PROJEXEC_SRCS 
       ${SOURCE_DIR}/${PROJECT_NAME}.cpp
   )
-  
+  set(${PROJECT_NAME}_SOURCE_DIRS_OWN ${SOURCE_DIR})
   add_dependent_subproject(proj_lib)
   set(${PROJECT_NAME}_SOURCE_DIRS_OUT ${${PROJECT_NAME}_SOURCE_DIRS_OWN} PARENT_SCOPE)
   
@@ -42,5 +33,13 @@ function(configure_project_executable)
   
   target_link_libraries (${PROJECT_NAME} proj_lib)
   
-  add_gdb_target(${PROJECT_NAME})
+  add_gdb_target()
 endfunction(configure_project_executable)
+
+# Make sure we tell the topdir CMakeLists that we exist (if build from topdir)
+get_directory_property(hasParent PARENT_DIRECTORY)
+
+if(hasParent)
+  set(PROJECT_${PROJECT_NAME} true PARENT_SCOPE)
+endif()
+
