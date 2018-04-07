@@ -21,3 +21,4 @@ include(gunittests)
 # Add sub-directories
 add_subdirectory(proj_lib)
 add_subdirectory(proj_exec)
+add_subdirectory(proj_exec2)

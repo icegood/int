@@ -1,1 +1,2 @@
-#cmakedefine proj_exec_specific %proj_exec_specific%
+#pragma once
+#cmakedefine proj_exec_specific @proj_exec_specific@

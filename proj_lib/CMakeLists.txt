@@ -8,7 +8,7 @@ set(PROJECT_SOURCES
     ${SOURCE_DIR}/proj_lib.cpp
 )
 
-include(proj_dependencies)
+include(project_specific)
 set(${PROJECT_NAME}_SOURCE_DIRS_OUT ${${PROJECT_NAME}_SOURCE_DIRS_OWN} PARENT_SCOPE)
 
 add_library(proj_lib STATIC ${PROJECT_SOURCES})
