@@ -1,5 +1,5 @@
 #include "proj_lib.h"
-#include "proj_exec.h"
+#include "proj_exec2.h"
 #include <iostream>
 
 static void print_status()
@@ -10,10 +10,10 @@ static void print_status()
   std::cout << "common_def is not defined" << std::endl;
 #endif
 
-#ifdef proj1_specific
-  std::cout << "proj1_specific is defined" << std::endl;
+#ifdef proj2_specific
+  std::cout << "proj2_specific is defined" << std::endl;
 #else
-  std::cout << "proj1_specific is not defined" << std::endl;
+  std::cout << "proj2_specific is not defined" << std::endl;
 #endif
 }
 
