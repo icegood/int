@@ -10,10 +10,10 @@ static void print_status()
   std::cout << "common_def is not defined" << std::endl;
 #endif
 
-#ifdef proj2_specific
-  std::cout << "proj2_specific is defined" << std::endl;
+#ifdef proj_exec2_specific
+  std::cout << "proj_exec2_specific is defined" << std::endl;
 #else
-  std::cout << "proj2_specific is not defined" << std::endl;
+  std::cout << "proj_exec2_specific is not defined" << std::endl;
 #endif
 }
 

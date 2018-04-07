@@ -16,3 +16,9 @@ if(hasParent)
 endif()
 
 set(${PROJECT_NAME}_SOURCE_DIRS_OWN ${SOURCE_DIR})
+
+# project specific paameters :
+function(configure_additional_options)
+  configure_file( ./include/${PROJECT_NAME}_options.h.in ${PROJECT_NAME}_options.h @ONLY)
+  target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+endfunction(configure_additional_options)

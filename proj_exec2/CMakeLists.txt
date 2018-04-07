@@ -15,6 +15,7 @@ set(${PROJECT_NAME}_SOURCE_DIRS_OUT ${${PROJECT_NAME}_SOURCE_DIRS_OWN} PARENT_SC
 
 add_executable(proj_exec2 ${PROJEXEC_SRCS})
 target_include_directories(proj_exec2 PRIVATE ${INCLUDE_DIR})
+configure_additional_options()
 
 target_link_libraries (proj_exec2 proj_lib)
 
