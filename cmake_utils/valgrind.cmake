@@ -17,7 +17,7 @@ function(add_valgring_targets subproject_name)
     set(prog_to_profile ${subproject_name}_test)
     foreach (trg ${vg_mem_target} ${vg_sgcheck_target} ${vg_cachegrind_target} ${vg_callgrind_target} ${vg_helgrind_target})
       # valgrind reports should work against test files:
-      add_dependencies (${trg} )
+      add_dependencies (${trg} ${prog_to_profile})
     endforeach ()
     
     # Memcheck report
