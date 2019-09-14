@@ -1,18 +1,9 @@
-cmake_minimum_required(VERSION 3.6.2)
+cmake_minimum_required(VERSION 3.13.4)
 project(proj_lib)
 
-set (INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set (SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
-
-set(PROJECT_SOURCES
-    ${SOURCE_DIR}/${PROJECT_NAME}.cpp
-)
-
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/../cmake_utils)
 include(project_specific)
+add_library(${PROJECT_NAME} STATIC src/${PROJECT_NAME}.cpp)
+configure_project_common()
 
-add_library(${PROJECT_NAME} STATIC ${PROJECT_SOURCES})
-target_include_directories (${PROJECT_NAME} PUBLIC ${INCLUDE_DIR})
-# unit tests
-add_tests_target(${PROJECT_NAME})
-# gprof
-add_gprof_target(${PROJECT_NAME})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
