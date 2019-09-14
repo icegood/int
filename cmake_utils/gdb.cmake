@@ -10,11 +10,7 @@ function(add_gdb_target)
       set(GDB_TARGET ${PROJECT_NAME}_gdb)
       add_custom_target (${GDB_TARGET})
       add_dependencies(${GDB_TARGET} ${PROJECT_NAME})
-      
-      set(GDB_SOURCE_DIRS )
-      foreach(SRC_PATH ${${PROJECT_NAME}_SOURCE_DIRS_OWN})
-        set(GDB_SOURCE_DIRS ${GDB_SOURCE_DIRS} "--directory=${SRC_PATH}")
-      endforeach()
+
       add_custom_command (
         TARGET ${GDB_TARGET}
         POST_BUILD
