@@ -1,3 +1,3 @@
 #pragma once
 void LibDoSomething();
-int SomeAriphmetics(int m);
+int SomeArithmetics(int m);

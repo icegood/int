@@ -5,6 +5,6 @@ void LibDoSomething() {
   std::cout << "something done by lib" << std::endl;
 }
 
-int SomeAriphmetics(int m) {
+int SomeArithmetics(int m) {
   return m*m;
 }

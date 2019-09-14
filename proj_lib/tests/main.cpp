@@ -2,7 +2,7 @@
 #include "proj_lib.h"
 
 int main() {
-  int res = SomeAriphmetics(5);
+  int res = SomeArithmetics(5);
   
   std::cout << res << std::endl;
 }
