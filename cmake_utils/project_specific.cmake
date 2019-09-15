@@ -13,6 +13,7 @@ function(configure_project_tools)
   # unit tests
   enable_testing()
   include(gunittests)
+  message("PROJECT_NAME=${PROJECT_NAME}")
   add_tests_target(${PROJECT_NAME})
   # gprof
   include(gprof)
@@ -25,14 +26,14 @@ function(configure_project_common)
 
   target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
   configure_additional_options()
-  if(!hasParent)
+  if(ParentDir STREQUAL "")
     configure_project_tools(${PROJECT_NAME})
   endif()
 endfunction(configure_project_common)
 
 # Make sure we tell the topdir CMakeLists that we exist (if build from topdir)
-get_directory_property(hasParent PARENT_DIRECTORY)
-
+get_directory_property(ParentDir PARENT_DIRECTORY)
+message("ParentDir=${ParentDir}")
 #if(hasParent)
 #  set(PROJECT_${PROJECT_NAME} true PARENT_SCOPE)
 #endif()
