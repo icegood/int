@@ -4,7 +4,8 @@ endif()
 
 # ideas are taken from https://github.com/epam/nfstrace/blob/master/cmake/valgrind.cmake
 function(add_gprof_target subproject_name)
-  if (ENABLE_GPROF) 
+  if (ENABLE_GPROF)
+    message(STATUS "enabling gprof target for " ${PROJECT_NAME})
     find_program (GPROF_PATH gprof)
     
     if (GPROF_PATH)

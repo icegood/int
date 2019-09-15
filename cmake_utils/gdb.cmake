@@ -1,7 +1,7 @@
 # ideas are taken from https://github.com/epam/nfstrace/blob/master/cmake/valgrind.cmake
 function(add_gdb_target)
   set(l Debug RelWithDebInfo)
-  if (${CMAKE_BUILD_TYPE} IN_LIST l)
+  if (CMAKE_BUILD_TYPE IN_LIST l)
     message(STATUS "enabling gdb target for " ${PROJECT_NAME})
     
     find_program (GDB_PATH gdb)

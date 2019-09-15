@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 3.13.4)
+cmake_minimum_required(VERSION 3.13)
+include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake_utils/project_prolog.cmake)
 project(proj_lib)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/../cmake_utils)
+set(PROJECT_LINK_LIBS ${PROJECT_NAME})
 include(project_specific)
 add_library(${PROJECT_NAME} STATIC src/${PROJECT_NAME}.cpp)
 configure_project_common()
