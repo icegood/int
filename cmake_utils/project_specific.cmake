@@ -6,14 +6,18 @@ function(configure_additional_options)
   endif()
 endfunction(configure_additional_options)
 
+enable_testing()
+find_package(GTest REQUIRED)
+
 function(configure_project_tools)
   # gdb
   include(gdb)
   add_gdb_target()
   # unit tests
   enable_testing()
-  include(gunittests)
-  add_tests_target(${PROJECT_NAME} "${PROJECT_LINK_LIBS}")
+  add_executable(${PROJECT_NAME}_test)
+  target_link_libraries(${PROJECT_NAME}_test GTest::GTest GTestMain::GTestMain)
+  gtest_add_tests(${PROJECT_NAME} "${PROJECT_LINK_LIBS}")
   # gprof
   include(gprof)
   add_gprof_target(${PROJECT_NAME})
