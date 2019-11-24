@@ -15,9 +15,13 @@ function(configure_project_tools)
   add_gdb_target()
   # unit tests
   enable_testing()
-  add_executable(${PROJECT_NAME}_test)
-  target_link_libraries(${PROJECT_NAME}_test GTest::GTest GTestMain::GTestMain)
-  gtest_add_tests(${PROJECT_NAME} "${PROJECT_LINK_LIBS}")
+  list (TRANSFORM ${PROJECT_NAME}_test_sources PREPEND ${${PROJECT_NAME}_SOURCE_DIR}/)
+
+  add_executable(${PROJECT_NAME}_test ${${PROJECT_NAME}_SOURCE_DIR}/tests/main.cpp
+    ${${PROJECT_NAME}_test_sources})
+  target_link_libraries(${PROJECT_NAME}_test PRIVATE GTest::GTest)
+  target_include_directories(${PROJECT_NAME}_test PRIVATE $<TARGET_PROPERTY:${PROJECT_NAME},INCLUDE_DIRECTORIES>)
+  #gtest_add_tests(TARGET ${PROJECT_NAME} SOURCES "${${PROJECT_NAME}_test_sources}")
   # gprof
   include(gprof)
   add_gprof_target(${PROJECT_NAME})
@@ -26,11 +30,11 @@ endfunction(configure_project_tools)
 function(configure_project_common)
   target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
   configure_additional_options()
-  if(ParentDir STREQUAL "")
+  #if(ParentDir STREQUAL "")
     configure_project_tools()
-  endif()
+  #endif()
 endfunction(configure_project_common)
 
 # Make sure we tell the topdir CMakeLists that we exist (if build from topdir)
 get_directory_property(ParentDir PARENT_DIRECTORY)
-
+message(STATUS "dir=" ${ParentDir})
